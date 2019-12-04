@@ -1,5 +1,5 @@
 ---
-title: "Aides Drug"
+title: "Drug Efficiency Of Everyone"
 author: "Miguel Cullum"
 date: "November 11 2019"
 output: html_document
@@ -23,9 +23,9 @@ A new preventative aides (abacavirinol) is under test in clinical trials. Analyz
 
 For this section we will focus on whether there is a difference between taking the drug and taking the placebo and getting aids for everyone.
 
-$H_0$:The drug  (abacavirinol) is not effective for everyone.
+$H_0$: There is no difference between taking the drug or taking the placebo and getting aids for everyone.
 
-$H_1$:The drug  (abacavirinol) is effective for everyone.
+$H_1$: There is a difference between taking the drug or taking the placebo and getting aids for everyone.
 
 ## Methods
 
@@ -76,5 +76,5 @@ The p-value for this chi-square test is 2.2e-16, which is less than our threshho
 
 <!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
 
-Our p-value is 2.2e-16 for the chi-square test and 2.333e-07 for the fisher test. This means the probability of getting a sample like this under conditions when the null hypothesis is true is about 0% . Our p-valueis less than our threshold of belief which is .05 percent. Since the p-value is less than .05 we reject the null hypothesis and conclude that there is a difference between taking the drug or taking the placebo and getting aids for everyone. This data shows that taking the drug ios effective in preventing aids for everyone. This data also indicates that taking a drug has a positive effect for everyone. 
+Our p-value is 2.2e-16 for the chi-square test and 2.333e-07 for the fisher test. This means the probability of getting a sample like this under conditions when the null hypothesis is true is about 0% . Our p-value is less than our threshold of belief which is .05 percent. Since the p-value is less than .05 we reject the null hypothesis and conclude that there is a difference between taking the drug or taking the placebo and getting aids for everyone. This data shows that taking the drug is effective in preventing aids for everyone. This data also shows that taking a drug has a positive effect for everyone. 
 
