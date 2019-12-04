@@ -1,0 +1,83 @@
+---
+title: "Drug Efficiency Of LGBTQ"
+author: "Miguel Cullum"
+date: "November 11 2019"
+output: html_document
+---
+```{r include=FALSE,echo=FALSE}
+require(tidyverse)
+require(tigerstats)
+avast <-read.csv(file="avastivironal.csv",header=TRUE)
+female <- filter(avast, sex=="gal")
+male <- filter(avast, sex=="guy")
+LQ <-filter(avast, LGBTQ=="gay")
+DRUGU <-filter(avast, DrugUser=="yes")
+```
+
+# Introduction
+
+<!--In this section you explain what you are trying to show.  Where did the data come from?  What is the research or other question you are trying to answer?.  If you skimp in this section expect to be marked down in your grade. Paint a picture of the project a couple of paragraphs is expected!-->
+
+A new  preventative aides (abacavirinol) is under test in clinical trials. Analyze the effectiveness of this drug across the board. Consider population subgroups by gender, drug use, and sexual orientation. Finish this!
+
+For this section, we will focus on whether there is a difference between taking the drug or taking the placebo and getting aids for the LGBTQ community only.
+
+$H_0$: There is no defference between taking the drug or taking the placebo and getting aids for the LGBTQ community only.
+
+$H_1$: There is a difference between taking the drug or taking the placebo and getting aids for the LGBTQ community only.
+
+# Methods
+
+<!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method. Discuss what data manipulations may be needed for example subsetting or other binning procedures and what sort of graphical displays and inferential tools will be used!-->
+
+Our two variable of interest is treatment and infected. For this section we will be using the data called LQ, which includes LGBTQ (gay) only. Both factor variables are categorical. For this project we will be using a barchart for the graphical results and a xtab command for the numerical results.
+
+#Results
+
+<!--Divide this section into two sub-sections:  One for your descriptive  results and one for your inferential results.!-->
+
+## Descriptive Results
+
+It seems that the percentage of the LGBTQ community who got aids and was taking the drug are higher than that of those who took the placebo. By the looks of the barchart, the drug seems to be ineffective in preveting aids for the LGBTQ community.
+
+### Graphical Descriptive Results
+
+<!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question. Bottom line is to explain the features of the graph that are relevant to conforming or departing to what is expected by your null hypothesis !-->
+```{r}
+barchartGC(~infected + treatment,data=LQ, type="percent", main="Drug Efficiency for LGBTQ Only")
+```
+
+By the looks of the barchart, the drug doesn't seems to be working. It seems that the percentage of the LGBTQ community who got aids and was taking the drug is higher than that of those who took the placebo. But we need more information before we can reject or fail to reject the null hypothesis.
+
+### Numerical Descriptive Results
+
+<!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+```{r}
+table1 <- xtabs(~infected + treatment, data=LQ)
+rowPerc(table1)
+colPerc(table1)
+```
+
+The numerical results shows that the drug seems to be ineffective in preventing aids forthe LGBTQ community. About 72% of the LGBTQ community who took the drug got aids and about 28% ofthe LGBTQ community who took the placebo got aids, that means that the drug was ineffective in preventing aids in the LGBTQ community since the percentage of those who took the drug and got aids is high. 
+
+## Inferential Results
+
+<!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+```
+
+The p-value for this chi-square test is 5.029e-06, which is less than our threshold of belief of .05. Since our p-value is less than .05, we could posibly reject the null hypothesis, but we still need to evaluate the fisher test to be certain.
+
+```{r}
+fisher.test(table1)
+```
+
+The p-value for this fisher test is 2.998e-06, which is less than our threshold of belief of .05. Since our p-value for both the chi-square and the fisher test is less than .05, we reject the null hypothesis.
+
+# Discussion and Conclusion
+
+<!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
+
+Since the p-value is 5.029-e06 for the chi-square test and 2998e-06 for the fisher test. This means the probability of getting a sample like this under conditions when the null hypothesis is true is about 0%. Our p-value is less than our threshold of belief which is .05 (five percent). Since the p-value is less than .05, we reject the null hypothesis and conclude that there is a difference between taking the drug or taking the placebo and getting aids for the LGBTQ community only. This data shows that taking the drug is ineffective in preventing aids for the LGBTQ comunity only. This data also indicates that taking the drug has a negative effect for the LGBTQ.
